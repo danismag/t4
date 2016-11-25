@@ -1,0 +1,7 @@
+.idea
+vendor
+protected/Cache
+public/Assets
+*.kdev4
+.git
+.kdev4
