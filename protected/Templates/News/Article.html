@@ -1,0 +1,21 @@
+{% extends 'Index.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <div class="panel panel-info ">
+                <div class="panel-heading">{{ article.lead }}</div>
+                <div class="panel-body">{{ article.text }}</div>
+                <div class="panel-footer">
+                    <p><span class="col-sm-2">{{ article.date }}</span>
+                        <span class="col-sm-10"><a href="/news/add">Добавить новость</a></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

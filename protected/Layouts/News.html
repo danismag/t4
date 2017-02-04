@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:t4="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ app.config.appname }}</title>
+  {{ publishCss() }}
+</head>
+<nav class="navbar-default"><a class="navbar-link" href="/">Главная</a>&nbsp;<a class="navbar-link" href="/news">Все новости</a></nav>
+<body>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-sm-3">
+
+            <t4:block path="//News/Last"></t4:block>
+
+        </div>
+        <div class="col-sm-7 col-sm-offset-1">
+
+            {% block content %}{% endblock %}
+
+        </div>
+    </div>
+</div>
+
+{{ publishJs() }}
+</body>
+</html>

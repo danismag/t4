@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Minimal web-application based on T4 framework</title>
+  <title>{{ app.config.appname }}</title>
   {{ publishCss() }}
 </head>
+<nav class="navbar-default"><a class="navbar-link" href="/">Главная</a>&nbsp;<a class="navbar-link" href="/news">Все новости</a></nav>
 <body>
+
 {% block content %}{% endblock %}
 {{ publishJs() }}
 </body>
