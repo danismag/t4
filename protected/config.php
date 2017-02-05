@@ -2,7 +2,15 @@
 
 return [
     
-    'appname' => 'Учебный проект Т4',
+    'db' => [
+        'default' => [
+            'driver' => 'mysql',
+            'host' => 'localhost',
+            'dbname' => 'muslib',
+            'user' => 'danis',
+            'password' => ''
+        ]
+    ],
     
     'extensions' => [
         

@@ -5,10 +5,10 @@
   <title>{{ app.config.appname }}</title>
   {{ publishCss() }}
 </head>
-<nav class="navbar-default"><a class="navbar-link" href="/">Главная</a>&nbsp;<a class="navbar-link" href="/news">Все новости</a></nav>
-<body>
+
 
 {% block content %}{% endblock %}
+
 {{ publishJs() }}
 </body>
 </html>
