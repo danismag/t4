@@ -13,10 +13,10 @@ class Music
 
         'columns' => [
 
-            'title'         => ['type' => 'string'],
-            'description'   => ['type' => 'text'],
-            'year'          => ['type' => 'int'],
-            'rating'         => ['type' => 'int'],
+            'title' => ['type' => 'string'],
+            'description' => ['type' => 'text'],
+            'year' => ['type' => 'int'],
+            'rating' => ['type' => 'int'],
         ],
         'relations' => [
 
