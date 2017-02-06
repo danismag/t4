@@ -14,7 +14,7 @@ class Performer
         'columns' => [
 
             'name' => ['type' => 'string'],
-            'text' => ['type' => 'text'],
+            'bio' => ['type' => 'text'],
             'rating' => ['type' => 'int'],
         ],
         'relations' => [
