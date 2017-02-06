@@ -11,12 +11,15 @@ class Index
 
     public function actionDefault()
     {
+        $this->app->assets->publishCssFile('/Assets/navbar.css');
+        $this->app->assets->publishCssFile('/Assets/stickyfooter.css');
 
     }
-    
-    public function actionAbout()
+
+    public function actionLogin()
     {
-            
+        $this->app->assets->publishCssFile('/Assets/signing.css');
     }
+    
 
 }

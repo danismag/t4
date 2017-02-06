@@ -13,9 +13,7 @@ return [
     ],
     
     'extensions' => [
-        
-        'bootstrap' => [
-            'theme' => 'default'
-        ]
+        'jquery' => [],
+        'bootstrap' => []
     ]
 ];
