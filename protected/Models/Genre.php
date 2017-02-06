@@ -14,7 +14,7 @@ class Genre
         'columns' => [
 
             'title' => ['type' => 'string'],
-            'description' => ['type' => 'text'],
+            'description' => ['type' => 'text']
         ],
         'relations' => [
 
