@@ -10,6 +10,7 @@ body {
 }
 .footer {
     position: absolute;
+    vertical-align: baseline;
     bottom: 0;
     width: 100%;
     /* Set the fixed height of the footer here */

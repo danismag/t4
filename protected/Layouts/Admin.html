@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title }}</title>
+
+  {{ publish('/Assets/admin') }}
+
+    {{ publishCss() }}
+  <link rel="stylesheet" href="{{asset('/Assets/admin/adminDefault.css')}}">
+</head>
+<body>
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">MusicLib</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/admin">Главная</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Музыка<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/admin/newMusic">Добавить новый трек</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/admin/editAllMusic">Редактировать все</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Исполнители<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/admin/newPerformer">Добавить нового исполнителя</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/admin/editAllPerformers">Редактировать всех исполнителей</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Жанры<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/admin/newGenre">Добавить новый жанр</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/admin/editAllGenres">Редактировать все жанры</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+{% if app.flash.message is defined %}
+  <div class="container">
+    <div class="alert alert-info alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{app.flash.message}}
+    </div>
+  </div>
+{% endif %}
+
+{% block content %}{% endblock %}
+
+{{ publishJs() }}
+</body>
+</html>
