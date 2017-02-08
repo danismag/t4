@@ -1,0 +1,27 @@
+{% extends 'Admin.html' %}
+
+{% set title='Редактирование музыкальных жанров' %}
+
+{% block content %}
+<div class="container">
+    <table class="table table-hover">
+        <TR>
+            <TH>Жанр</TH>
+            <TH>Описание жанра</TH>
+            <TH colspan="2">Действия</TH>
+        </TR>
+
+        {% for genre in genres %}
+
+            <TR>
+                <TD>{{ genre.title }}</TD>
+                <TD>{{ genre.description }}</TD>
+                <TD><a class="btn btn-info" href="/admin/editGenre?id={{ genre.Pk }}">Редактировать</a></TD>
+                <TD><a class="btn btn-warning" href="/admin/deleteGenre?id={{ genre.Pk }}">Удалить</a></TD>
+            </TR>
+
+            {% endfor %}
+
+    </table>
+</div>
+{% endblock %}

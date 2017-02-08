@@ -22,4 +22,23 @@ class Genre
         ]
     ];
 
+    protected function validateTitle($title)
+    {
+        if (strlen(trim($title)) < 1) {
+            yield new \Exception('Заполните название музыкального жанра');
+        }
+        if (strlen(trim($title)) < 3) {
+            yield new \Exception('Слишком короткое название');
+        }
+        return true;
+    }
+
+    protected function validateDescription($desc)
+    {
+        if (strlen(trim($desc)) < 1) {
+            yield new \Exception('Заполните описание музыкального жанра');
+        }
+        return true;
+    }
+
 }
