@@ -41,4 +41,14 @@ class Genre
         return true;
     }
 
+    protected function satitizeTitle($title)
+    {
+        return trim($title);
+    }
+
+    protected function satitizeDescription($desc)
+    {
+        return trim($desc);
+    }
+
 }

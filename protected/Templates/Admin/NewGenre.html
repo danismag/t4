@@ -1,6 +1,6 @@
 {% extends 'Admin.html' %}
 
-{% set title='Добавление нового музыкального жанра' %}
+{% set title='Добавление/Редактирование нового музыкального жанра' %}
 
 {% block content %}
     {% if errors is defined %}
@@ -15,7 +15,10 @@
     {% endif %}
 
 <div class="container">
-  <form class="form-horizontal" action="/admin/newGenre" method="post">
+  <form class="form-horizontal" action="/admin/saveGenre" method="post">
+    {% if genre.pk is defined %}
+    <input type="text" class="form-control hidden" name="genre[pk]" value="{{ genre.pk }}">
+        {% endif %}
     <div class="form-group">
       <label for="GenreTitle" class="col-sm-2 control-label">Название</label>
       <div class="col-sm-6">

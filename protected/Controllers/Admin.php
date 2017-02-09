@@ -16,24 +16,46 @@ class Admin
 
     }
 
-    public function actionNewGenre($genre = null)
+    public function actionNewGenre()
+    {
+
+    }
+
+    public function actionEditGenre($id)
+    {
+        $genre = Genre::findByPK($id);
+
+        if (false === $genre) {
+
+            $this->app->flash->message = 'Жанр не найден';
+            $this->redirect('/admin/editAllGenres');
+        }
+        $this->data->genre = $genre;
+    }
+
+    public function actionSaveGenre($genre = null)
     {
         if (null !== $genre) {
 
             try {
-                (new Genre)
-                    ->fill($genre)
-                    ->save();
-                $this->app->flash->message = 'Новый жанр успешно добавлен';
+                if (empty($genre['pk'])) {
+                    $obj = new Genre;
+
+                } else {
+                    $obj = Genre::findByPK($genre['pk']);
+                }
+                    $obj
+                        ->fill($genre)
+                        ->save();
+                $this->app->flash->message = 'Жанр успешно сохранен';
                 $this->redirect('/admin/editAllGenres');
 
             } catch (MultiException $exc) {
 
                 $this->data->errors = $exc;
-                $this->data->genre = $genre;
+                $this->data->genre = $obj;
             }
         }
-
     }
 
     public function actionEditAllGenres()
