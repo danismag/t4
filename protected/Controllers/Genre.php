@@ -27,27 +27,24 @@ class Genre
         $this->data->genre = $genre;
     }
 
-    public function actionSave($genre = null)
+    public function actionSave($genre)
     {
-        if (null !== $genre) {
+        try {
+            if (empty($genre['pk'])) {
+                $obj = new \App\Models\Genre;
 
-            try {
-                if (empty($genre['pk'])) {
-                    $obj = new \App\Models\Genre;
-
-                } else {
-                    $obj = \App\Models\Genre::findByPK($genre['pk']);
-                }
-                $obj->fill($genre)
-                    ->save();
-                $this->app->flash->message = 'Жанр успешно сохранен';
-                $this->redirect('/genre/editAll');
-
-            } catch (MultiException $exc) {
-
-                $this->data->errors = $exc;
-                $this->data->genre = $genre;
+            } else {
+                $obj = \App\Models\Genre::findByPK($genre['pk']);
             }
+            $obj->fill($genre)
+                ->save();
+            $this->app->flash->message = 'Жанр успешно сохранен';
+            $this->redirect('/genre/editAll');
+
+        } catch (MultiException $exc) {
+
+            $this->data->errors = $exc;
+            $this->data->genre = $genre;
         }
     }
 

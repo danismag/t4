@@ -11,11 +11,12 @@ class Music
 {
     protected static $schema = [
 
+        'table' => 'music',
+
         'columns' => [
 
             'title' => ['type' => 'string'],
-            'description' => ['type' => 'text'],
-            'year' => ['type' => 'int'],
+            'composer' => ['type' => 'string'],
             'rating' => ['type' => 'int'],
         ],
         'relations' => [
