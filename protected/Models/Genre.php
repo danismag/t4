@@ -3,9 +3,15 @@
 
 namespace App\Models;
 
-
 use T4\Orm\Model;
 
+/**
+ * Class Genre
+ * @package App\Models
+ * @property string $title
+ * @property string $description
+ * @property \T4\Core\Collection $music
+ */
 class Genre
     extends Model
 {
@@ -41,12 +47,12 @@ class Genre
         return true;
     }
 
-    protected function satitizeTitle($title)
+    protected function sanitizeTitle($title)
     {
         return trim($title);
     }
 
-    protected function satitizeDescription($desc)
+    protected function sanitizeDescription($desc)
     {
         return trim($desc);
     }

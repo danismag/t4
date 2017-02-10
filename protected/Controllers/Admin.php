@@ -14,10 +14,6 @@ class Admin
 {
     public function actionDefault()
     {
-        $trek = new Music;
-        $genre = Genre::findByPK(1);
-        $trek-> = $genre;
-        var_dump($trek);
 
     }
 
