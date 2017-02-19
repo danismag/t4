@@ -3,6 +3,10 @@ body {
     font-size: 16px;
 }
 
+table, th {
+    text-align: center;
+}
+
 nav ul li {
     font-size: 18px;
 }

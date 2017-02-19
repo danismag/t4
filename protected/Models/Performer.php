@@ -3,9 +3,6 @@
 
 namespace App\Models;
 
-
-use T4\Core\Collection;
-use T4\Fs\Helpers;
 use T4\Http\Uploader;
 use T4\Mvc\Application;
 use T4\Orm\Model;
@@ -28,7 +25,7 @@ class Performer
 
             'name' => ['type' => 'string'],
             'bio' => ['type' => 'text'],
-            'rating' => ['type' => 'int'],
+            'rating' => ['type' => 'int', 'default' => 0],
         ],
         'relations' => [
 
@@ -44,7 +41,7 @@ class Performer
             return $this;
         }
         $uploader = new Uploader($formFieldName);
-        $uploader->setPath('/public/data/images');
+        $uploader->setPath('/data/images');
         foreach ($uploader() as $uploadedFilePath) {
             if (false !== $uploadedFilePath) {
                 $this->images->append(new Image(['path' => $uploadedFilePath]));
@@ -57,10 +54,8 @@ class Performer
     {
         if (!empty($this->images)) {
             try {
-                foreach ($this->images as $image) {
-                    Helpers::removeFile(ROOT_PATH_PUBLIC . $image->path);
-                }
-                $this->images = new Collection();
+                $this->images->delete();
+
             } catch (\T4\Fs\Exception $e) {
                 return false;
             }
@@ -72,10 +67,8 @@ class Performer
     {
         if (!empty($this->music)) {
             try {
-                foreach ($this->music as $music) {
-                    $music->delete();
-                }
-                $this->images = new Collection();
+                $this->music->delete();
+
             } catch (\T4\Fs\Exception $e) {
                 return false;
             }
@@ -83,11 +76,40 @@ class Performer
         return true;
     }
 
-    public function beforeDelete()
+    protected function beforeDelete()
     {
         $this->deleteMusic();
         $this->deleteImages();
         return parent::beforeDelete();
+    }
+
+    protected function validateName($name)
+    {
+        if (strlen(trim($name)) < 1) {
+            yield new \Exception('Впишите имя исполнителя');
+        }
+        if (strlen(trim($name)) < 3) {
+            yield new \Exception('Слишком короткое имя');
+        }
+        return true;
+    }
+
+    protected function validateBio($bio)
+    {
+        if (strlen(trim($bio)) < 3) {
+            yield new \Exception('Слишком короткая биография');
+        }
+        return true;
+    }
+
+    protected function sanitizeName($name)
+    {
+        return trim($name);
+    }
+
+    protected function sanitizeBio($bio)
+    {
+        return trim($bio);
     }
 
 }

@@ -30,17 +30,17 @@ class Image
         ]
     ];
 
-    public function afterDelete()
+    public function beforeDelete()
     {
         if($this->path){
             try {
-                Helpers::removeFile(ROOT_PATH_PUBLIC.$this->path);
-                $this->path='';
+                Helpers::removeFile(ROOT_PATH_PUBLIC . $this->path);
+                $this->path = '';
             }
             catch (\T4\Fs\Exception $e) {
             }
         }
-        return parent::afterDelete();
+        return parent::beforeDelete();
     }
 
 }
