@@ -9,7 +9,7 @@ use App\Models\Performer;
 use T4\Core\MultiException;
 use T4\Mvc\Controller;
 
-class Music
+class MusicEdit
     extends Controller
 {
     public function actionNew()
@@ -30,7 +30,7 @@ class Music
         if (false === $trek) {
 
             $this->app->flash->message = 'Трек не найден';
-            $this->redirect('/music/editAll');
+            $this->redirect('/admin/music/editAll');
         }
         $this->data->trek = $trek;
         $this->data->genres = Genre::findAll();
@@ -82,5 +82,4 @@ class Music
         $this->redirect($_SERVER['HTTP_REFERER']);
 
     }
-
 }

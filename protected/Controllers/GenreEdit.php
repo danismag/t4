@@ -7,7 +7,7 @@ namespace App\Controllers;
 use T4\Core\MultiException;
 use T4\Mvc\Controller;
 
-class Genre
+class GenreEdit
     extends Controller
 {
     public function actionNew()
@@ -22,7 +22,7 @@ class Genre
         if (false === $genre) {
 
             $this->app->flash->message = 'Жанр не найден';
-            $this->redirect('/genre/editAll');
+            $this->redirect('/admin/genre/editAll');
         }
         $this->data->genre = $genre;
     }
@@ -39,7 +39,7 @@ class Genre
             $obj->fill($genre)
                 ->save();
             $this->app->flash->message = 'Жанр успешно сохранен';
-            $this->redirect('/genre/editAll');
+            $this->redirect('/admin/genre/editAll');
 
         } catch (MultiException $exc) {
 
@@ -67,7 +67,7 @@ class Genre
             $this->app->flash->message = 'Жанр не найден';
         }
 
-        $this->redirect('/genre/editAll');
+        $this->redirect($_SERVER['HTTP_REFERER']);
     }
 
 }

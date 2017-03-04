@@ -2,5 +2,5 @@
 
 return [
 
-    '/news/article/<1>' => '//News/Article(id=<1>)',
+    '/admin/<1>/<2>' => '//<1>Edit/<2>',
 ];

@@ -16,8 +16,8 @@
             <TR>
                 <TD>{{ genre.title }}</TD>
                 <TD>{{ genre.description }}</TD>
-                <TD><a class="btn btn-info" href="/genre/edit?id={{ genre.Pk }}">Редактировать</a></TD>
-                <TD><a class="btn btn-warning" href="/genre/delete?id={{ genre.Pk }}">Удалить</a></TD>
+                <TD><a class="btn btn-info" href="/admin/genre/edit?id={{ genre.Pk }}">Редактировать</a></TD>
+                <TD><a class="btn btn-warning" href="/admin/genre/delete?id={{ genre.Pk }}">Удалить</a></TD>
             </TR>
 
             {% endfor %}

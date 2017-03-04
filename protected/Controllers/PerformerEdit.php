@@ -8,7 +8,7 @@ use App\Models\Image;
 use T4\Core\MultiException;
 use T4\Mvc\Controller;
 
-class Performer
+class PerformerEdit
     extends Controller
 {
     public function actionNew()
@@ -23,7 +23,7 @@ class Performer
         if (false === $singer) {
 
             $this->app->flash->message = 'Исполнитель не найден';
-            $this->redirect('/performer/editAll');
+            $this->redirect('/admin/performer/editAll');
         }
         $this->data->singer = $singer;
     }
@@ -69,7 +69,7 @@ class Performer
             $this->app->flash->message = 'Исполнитель не найден';
         }
 
-        $this->redirect('/performer/editAll');
+        $this->redirect($_SERVER['HTTP_REFERER']);
     }
 
     public function actionDeleteImage($id)

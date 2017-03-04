@@ -15,7 +15,7 @@
     {% endif %}
 
 <div class="container">
-  <form class="form-horizontal" action="/performer/save" method="post" enctype="multipart/form-data">
+  <form class="form-horizontal" action="/admin/performer/save" method="post" enctype="multipart/form-data">
     {% if singer.pk is defined %}
     <input type="text" class="form-control hidden" name="singer[pk]" value="{{ singer.pk }}">
         {% endif %}

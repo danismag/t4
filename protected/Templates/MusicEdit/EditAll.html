@@ -20,12 +20,12 @@
             <TR>
                 <TD>{{ trek.title }}</TD>
                 <TD>{{ trek.composer }}</TD>
-                <TD><a href="/performer/edit?id={{ trek.performer.pk }}">{{ trek.performer.name }}</a></TD>
-                <TD><a href="/genre/edit?id={{ trek.genre.pk }}">{{ trek.genre.title }}</a></TD>
+                <TD><a href="/admin/performer/edit?id={{ trek.performer.pk }}">{{ trek.performer.name }}</a></TD>
+                <TD><a href="/admin/genre/edit?id={{ trek.genre.pk }}">{{ trek.genre.title }}</a></TD>
                 <TD>{{ trek.rating }}</TD>
                 <TD><audio src="{{ trek.path }}" controls></audio></TD>
-                <TD><a class="btn btn-info" href="/music/edit?id={{ trek.Pk }}">Редактировать</a></TD>
-                <TD><a class="btn btn-warning" href="/music/delete?id={{ trek.Pk }}">Удалить</a></TD>
+                <TD><a class="btn btn-info" href="/admin/music/edit?id={{ trek.Pk }}">Редактировать</a></TD>
+                <TD><a class="btn btn-warning" href="/admin/music/delete?id={{ trek.Pk }}">Удалить</a></TD>
             </TR>
 
             {% endfor %}
