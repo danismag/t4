@@ -19,8 +19,8 @@
             <TR>
                 <TD>{{ trek.title }}</TD>
                 <TD>{{ trek.composer }}</TD>
-                <TD>{{ trek.performer.title }}</TD>
-                <TD>{{ trek.genre.title }}</TD>
+                <TD><a href="/performer/edit?id={{ trek.performer.pk }}">{{ trek.performer.name }}</a></TD>
+                <TD><a href="/genre/edit?id={{ trek.genre.pk }}">{{ trek.genre.title }}</a></TD>
                 <TD>{{ trek.rating }}</TD>
                 <TD><a class="btn btn-info" href="/music/edit?id={{ trek.Pk }}">Редактировать</a></TD>
                 <TD><a class="btn btn-warning" href="/music/delete?id={{ trek.Pk }}">Удалить</a></TD>

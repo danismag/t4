@@ -35,8 +35,30 @@ class Music
 
     }
 
-    public function actionSave($trek = null)
+    public function actionSave($trek, $genreId, $performerId)
     {
+        try {
+            if (empty($trek['pk'])) {
+
+                $obj = new \App\Models\Music;
+
+            } else {
+                $obj = \App\Models\Music::findByPK($trek['pk']);
+            }
+            $obj->genre = Genre::findByPK($genreId);
+            $obj->performer = Performer::findByPK($performerId);
+
+            $obj->fill($trek)
+                ->uploadTrek('file')
+                ->save();
+            $this->app->flash->message = 'Композиция успешно сохранена';
+            $this->redirect($_SERVER['HTTP_REFERER']);
+
+        } catch (MultiException $e) {
+
+            $this->data->errors = $e;
+            $this->data->trek = $trek;
+        }
 
     }
 

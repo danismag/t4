@@ -29,7 +29,7 @@ class Music
             'title' => ['type' => 'string'],
             'composer' => ['type' => 'string'],
             'trek' => ['type' => 'string'],
-            'rating' => ['type' => 'int'],
+            'rating' => ['type' => 'int', 'default' => 0],
         ],
         'relations' => [
 
@@ -45,7 +45,7 @@ class Music
             return $this;
         try {
             $uploader = new Uploader($formFieldName);
-            $uploader->setPath('/public/data/music');
+            $uploader->setPath('/data/music');
             $file = $uploader();
             if ($this->trek) {
                 $this->deleteTrek();
@@ -62,8 +62,10 @@ class Music
     {
         if ($this->trek) {
             try {
-                $this->trek = '';
+
                 Helpers::removeFile(ROOT_PATH_PUBLIC . $this->trek);
+                $this->trek = '';
+
             } catch (\T4\Fs\Exception $e) {
                 return false;
             }
@@ -71,10 +73,39 @@ class Music
         return true;
     }
 
-    public function beforeDelete()
+    protected function beforeDelete()
     {
         $this->deleteTrek();
         return parent::beforeDelete();
+    }
+
+    protected function validateTitle($title)
+    {
+        if (strlen(trim($title)) < 1) {
+            yield new \Exception('Заполните название музыкальной композиции');
+        }
+        if (strlen(trim($title)) < 3) {
+            yield new \Exception('Слишком короткое название');
+        }
+        return true;
+    }
+
+    protected function validateComposer($composer)
+    {
+        if (strlen(trim($composer)) < 1) {
+            yield new \Exception('Впишите автора композиции');
+        }
+        return true;
+    }
+
+    protected function sanitizeTitle($title)
+    {
+        return trim($title);
+    }
+
+    protected function sanitizeComposer($composer)
+    {
+        return trim($composer);
     }
 
 }

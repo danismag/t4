@@ -35,10 +35,10 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">Жанр</label>
         <div class="col-sm-6">
-          <select class="form-control" name="trek[genre]">
-            <option selected>{{ trek.genre.title }}</option>
+          <select class="form-control" name="genreId">
+            <option selected value="{{ trek.genre.pk }}">{{ trek.genre.title }}</option>
             {% for genre in genres  %}
-              <option>{{ genre.title }}</option>
+              <option value="{{ genre.pk }}">{{ genre.title }}</option>
                 {% endfor %}
           </select>
         </div>
@@ -46,10 +46,10 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">Исполнитель</label>
         <div class="col-sm-6">
-          <select class="form-control" name="trek[performer]">
-            <option selected>{{ trek.performer.title }}</option>
+          <select class="form-control" name="performerId">
+            <option selected value="{{ trek.performer.pk }}">{{ trek.performer.name }}</option>
               {% for performer in performers  %}
-                <option>{{ performer.title }}</option>
+                <option value="{{ performer.pk }}">{{ performer.name }}</option>
               {% endfor %}
           </select>
         </div>
