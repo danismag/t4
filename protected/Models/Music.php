@@ -12,7 +12,7 @@ use T4\Orm\Model;
 /**
  * @property string $title
  * @property string $composer
- * @property string $trek
+ * @property string $path
  * @property int $rating
  * @property \App\Models\Performer $performer
  * @property \App\Models\Genre $genre
@@ -28,7 +28,7 @@ class Music
 
             'title' => ['type' => 'string'],
             'composer' => ['type' => 'string'],
-            'trek' => ['type' => 'string'],
+            'path' => ['type' => 'string'],
             'rating' => ['type' => 'int', 'default' => 0],
         ],
         'relations' => [
@@ -50,24 +50,23 @@ class Music
             $uploader = new Uploader($formFieldName);
             $uploader->setPath('/data/music');
             $file = $uploader();
-            if ($this->trek) {
+            if ('' != $this->path) {
                 $this->deleteTrek();
             }
-            $this->trek = $file;
+            $this->path = $file;
         } catch (\Exception $e) {
-            $this->trek = null;
-            var_dump($e); die;
+            $this->path = '';
         }
         return $this;
     }
 
     public function deleteTrek()
     {
-        if ($this->trek) {
+        if ($this->path) {
             try {
 
-                Helpers::removeFile(ROOT_PATH_PUBLIC . $this->trek);
-                $this->trek = '';
+                Helpers::removeFile(ROOT_PATH_PUBLIC . $this->path);
+                $this->path = '';
 
             } catch (\T4\Fs\Exception $e) {
                 return false;

@@ -54,7 +54,16 @@
           </select>
         </div>
       </div>
+
+      {% if trek.trek is defined %}
       <div class="form-group">
+        <div class="col-sm-6 col-sm-offset-2">
+          <audio src="{{ trek.path }}" controls></audio>
+        </div>
+      </div>
+      <div class="form-group">
+        {% endif %}
+
         <label for="exampleInputFile" class="col-sm-2 control-label">Загрузка музыкального трека</label>
           <div class="col-sm-6">
         <input type="file" id="exampleInputFile" name="musicFile">

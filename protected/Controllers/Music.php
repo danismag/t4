@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Models\Genre;
 use App\Models\Performer;
+use T4\Core\MultiException;
 use T4\Mvc\Controller;
 
 class Music
