@@ -67,6 +67,19 @@ class Music
 
     public function actionDelete($id)
     {
+        $music = \App\Models\Music::findByPK($id);
+
+        if (false !== $music) {
+
+            $music->delete();
+            $this->app->flash->message = 'Музыкальная композиция успешно удалена';
+
+        } else {
+
+            $this->app->flash->message = 'Музыкальная композиция не найдена';
+        }
+
+        $this->redirect($_SERVER['HTTP_REFERER']);
 
     }
 
