@@ -41,8 +41,11 @@ class Music
     public function uploadTrek($formFieldName)
     {
         $request = Application::instance()->request;
-        if (!$request->existsFilesData() || !$request->isUploaded($formFieldName))
+
+        if (!$request->existsFilesData() || !$request->isUploaded($formFieldName)) {
             return $this;
+        }
+
         try {
             $uploader = new Uploader($formFieldName);
             $uploader->setPath('/data/music');
@@ -53,7 +56,7 @@ class Music
             $this->trek = $file;
         } catch (\Exception $e) {
             $this->trek = null;
-
+            var_dump($e); die;
         }
         return $this;
     }

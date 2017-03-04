@@ -16,7 +16,7 @@
     {% endif %}
 
   <div class="container">
-    <form class="form-horizontal" action="/music/save" method="post">
+    <form class="form-horizontal" action="/music/save" method="post" enctype="multipart/form-data">
         {% if trek.pk is defined %}
           <input type="text" class="form-control hidden" name="trek[pk]" value="{{ trek.pk }}">
         {% endif %}
@@ -57,7 +57,7 @@
       <div class="form-group">
         <label for="exampleInputFile" class="col-sm-2 control-label">Загрузка музыкального трека</label>
           <div class="col-sm-6">
-        <input type="file" id="exampleInputFile" name="file">
+        <input type="file" id="exampleInputFile" name="musicFile">
         <p class="help-block">Загрузите музыкальный трек в формате *.ogg, *.mp3</p>
         </div>
       </div>

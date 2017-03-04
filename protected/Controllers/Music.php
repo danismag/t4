@@ -32,7 +32,8 @@ class Music
             $this->redirect('/music/editAll');
         }
         $this->data->trek = $trek;
-
+        $this->data->genres = Genre::findAll();
+        $this->data->performers = Performer::findAll();
     }
 
     public function actionSave($trek, $genreId, $performerId)
@@ -49,8 +50,9 @@ class Music
             $obj->performer = Performer::findByPK($performerId);
 
             $obj->fill($trek)
-                ->uploadTrek('file')
+                ->uploadTrek('musicFile')
                 ->save();
+
             $this->app->flash->message = 'Композиция успешно сохранена';
             $this->redirect($_SERVER['HTTP_REFERER']);
 
