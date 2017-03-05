@@ -13,10 +13,7 @@ class Index
 
     }
 
-    public function actionLogin()
-    {
 
-    }
     
 
 }

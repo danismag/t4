@@ -6,6 +6,12 @@ namespace App\Models;
 
 use T4\Orm\Model;
 
+/**
+ * Class UserSession
+ * @package App\Models
+ * @property string $hash
+ * @property \App\Models\User $user
+ */
 class UserSession extends Model
 {
     public static $schema = [

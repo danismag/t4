@@ -3,16 +3,6 @@
 {% set title='Добавление/Редактирование музыкального жанра' %}
 
 {% block content %}
-    {% if errors is defined %}
-        {% for error in errors %}
-          <div class="container">
-            <div class="alert alert-danger alert-dismissible col-md-8" role="alert">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                {{error.getMessage()}}
-            </div>
-          </div>
-        {% endfor %}
-    {% endif %}
 
 <div class="container">
   <form class="form-horizontal" action="/admin/genre/save" method="post">

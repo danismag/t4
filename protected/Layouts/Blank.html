@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ app.config.appname }}</title>
+
+    {{ publish('/Assets/login') }}
+
     {{ publishCss() }}
+  <link rel="stylesheet" href="{{asset('/Assets/login/signing.css')}}">
 </head>
 <body>
 
