@@ -17,4 +17,9 @@ class Admin
 
     }
 
+    public function actionLogin($login = null)
+    {
+
+    }
+
 }
