@@ -14,10 +14,8 @@ class m_1486389048_GenreTable
 
             'title' => ['type' => 'string'],
             'description' => ['type' => 'text']
-        ]);
-
-        $this->addIndex('genres', [
-            'title' => ['type' => 'unique']
+        ], [
+            'title_index' => ['type' => 'unique', 'columns' => ['title']]
         ]);
     }
 
