@@ -70,4 +70,10 @@ class GenreEdit
         $this->redirect($_SERVER['HTTP_REFERER']);
     }
 
+    protected function access($action, $params = [])
+    {
+        return !empty($this->app->user);
+    }
+
+
 }

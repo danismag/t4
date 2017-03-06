@@ -13,7 +13,7 @@ class Identity
     const SEC_IN_MONTH = 30*24*60*60;
     const COOKIE_NAME = 'muslib_auth';
 
-    public function login($data)
+    public static function login($data)
     {
         $errors = new MultiException;
         if (empty($data->email)) {
@@ -46,22 +46,7 @@ class Identity
         Helpers::setCookie(self::COOKIE_NAME, $hash, time() + self::SEC_IN_MONTH);
     }
 
-    public function getUser()
-    {
-        if (Helpers::issetCookie(self::COOKIE_NAME)) {
-            if (!empty($hash = Helpers::getCookie(self::COOKIE_NAME))) {
-                if (!empty($session = UserSession::findByHash($hash))) {
-
-                    return $session->user;
-                }
-                /* Если куки есть, а сессии нет */
-                Helpers::unsetCookie(self::COOKIE_NAME);
-            }
-        }
-        return null;
-    }
-
-    public function logout()
+    public static function logout()
     {
         if (Helpers::issetCookie(self::COOKIE_NAME)) {
             if (!empty($hash = Helpers::getCookie(self::COOKIE_NAME))) {
@@ -76,5 +61,20 @@ class Identity
                 }
             }
         }
+    }
+
+    public function getUser()
+    {
+        if (Helpers::issetCookie(self::COOKIE_NAME)) {
+            if (!empty($hash = Helpers::getCookie(self::COOKIE_NAME))) {
+                if (!empty($session = UserSession::findByHash($hash))) {
+
+                    return $session->user;
+                }
+                /* Если куки есть, а сессии нет */
+                Helpers::unsetCookie(self::COOKIE_NAME);
+            }
+        }
+        return null;
     }
 }

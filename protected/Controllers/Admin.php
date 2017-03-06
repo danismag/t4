@@ -5,8 +5,6 @@ namespace App\Controllers;
 
 
 use App\Components\Auth\Identity;
-use App\Models\Genre;
-use App\Models\Music;
 use T4\Core\MultiException;
 use T4\Mvc\Controller;
 
@@ -23,8 +21,7 @@ class Admin
         if (null !== $login) {
 
             try {
-                $auth = new Identity;
-                $auth->login($login);
+                Identity::login($login);
                 $this->redirect('/admin');
 
             } catch (MultiException $e) {
@@ -32,6 +29,20 @@ class Admin
                 $this->data->errors = $e;
             }
         }
+    }
+
+    public function actionLogout()
+    {
+        Identity::logout();
+        $this->redirect('/');
+    }
+
+    protected function access($action, $params = [])
+    {
+        if ('Login' === $action) {
+            return parent::access($action);
+        }
+        return !empty($this->app->user);
     }
 
 }
