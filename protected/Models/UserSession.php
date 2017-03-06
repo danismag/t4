@@ -11,6 +11,7 @@ use T4\Orm\Model;
  * @package App\Models
  * @property string $hash
  * @property \App\Models\User $user
+ * @method \App\Models\UserSession findByHash(string $hash)
  */
 class UserSession extends Model
 {

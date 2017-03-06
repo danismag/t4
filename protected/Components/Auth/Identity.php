@@ -10,6 +10,9 @@ use T4\Http\Helpers;
 
 class Identity
 {
+    const SEC_IN_MONTH = 30*24*60*60;
+    const COOKIE_NAME = 'muslib_auth';
+
     public function login($data)
     {
         $errors = new MultiException;
@@ -40,11 +43,38 @@ class Identity
         $session->user = $user;
         $session->save();
 
-        Helpers::setCookie('muslibauth', $hash, time() + 30*24*3600);
+        Helpers::setCookie(self::COOKIE_NAME, $hash, time() + self::SEC_IN_MONTH);
     }
 
     public function getUser()
     {
-        return User::getUserByPk(1);
+        if (Helpers::issetCookie(self::COOKIE_NAME)) {
+            if (!empty($hash = Helpers::getCookie(self::COOKIE_NAME))) {
+                if (!empty($session = UserSession::findByHash($hash))) {
+
+                    return $session->user;
+                }
+                /* Если куки есть, а сессии нет */
+                Helpers::unsetCookie(self::COOKIE_NAME);
+            }
+        }
+        return null;
+    }
+
+    public function logout()
+    {
+        if (Helpers::issetCookie(self::COOKIE_NAME)) {
+            if (!empty($hash = Helpers::getCookie(self::COOKIE_NAME))) {
+
+                Helpers::unsetCookie(self::COOKIE_NAME);
+
+                $session = UserSession::findByHash($hash);
+
+                if (!empty($session)) {
+
+                    $session->delete();
+                }
+            }
+        }
     }
 }

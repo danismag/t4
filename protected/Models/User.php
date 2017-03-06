@@ -13,6 +13,7 @@ use T4\Orm\Model;
  * @property string $password
  * @property string $name
  * @property \App\Models\UserSession $session
+ * @method \App\Models\User findByEmail(string $email)
  */
 class User extends Model
 {
