@@ -17,7 +17,7 @@ class UserSession extends Model
 {
     public static $schema = [
 
-        'table' => '__user_session',
+        'table' => '__user_sessions',
 
         'columns' => [
             'hash' => ['type' => 'string']

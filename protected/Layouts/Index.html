@@ -34,7 +34,8 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           {% if app.user %}
-              <p class="navbar-text">Добрый день, {{ app.user.name }}</p>
+            <li><a href="/admin">Добрый день, {{ app.user.name }}</a></li>
+            <li><a href="/admin/logout">Выйти</a></li>
           {% else %}
           <li><a href="/admin/login">Войти</a></li>
           {% endif %}

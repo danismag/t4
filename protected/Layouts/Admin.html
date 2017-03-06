@@ -26,30 +26,15 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li><a href="/admin">Главная</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Музыка<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/admin/music/new">Добавить новый трек</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="/admin/music/editAll">Редактировать все</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Исполнители<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/admin/performer/new">Добавить нового исполнителя</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="/admin/performer/editAll">Редактировать всех исполнителей</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Жанры<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/admin/genre/new">Добавить новый жанр</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="/admin/genre/editAll">Редактировать все жанры</a></li>
-          </ul>
-        </li>
+        <li><a href="/admin/music/editAll">Музыка</a></li>
+        <li><a href="/admin/performer/editAll">Исполнители</a></li>
+        <li><a href="/admin/genre/editAll">Жанры</a></li>
+
+        {% if app.user %}
+            <p class="navbar-text">Добро пожаловать, {{ app.user.name }}</p>
+          <li><a href="/admin/logout">Выйти</a></li>
+        {% endif %}
+
       </ul>
     </div><!--/.nav-collapse -->
   </div>
