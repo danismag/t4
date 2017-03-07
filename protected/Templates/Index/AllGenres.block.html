@@ -1,0 +1,7 @@
+{% if genres is not empty %}
+<div class="list-group">
+  {% for genre in genres %}
+    <a href="/index/viewGenre?id={{ genre.pk }}" class="list-group-item">{{ genre.title }}</a>
+  {% endfor %}
+</div>
+{% endif %}
