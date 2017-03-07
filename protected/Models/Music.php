@@ -4,6 +4,7 @@
 namespace App\Models;
 
 
+use T4\Dbal\QueryBuilder;
 use T4\Fs\Helpers;
 use T4\Http\Uploader;
 use T4\Mvc\Application;
@@ -40,8 +41,8 @@ class Music
 
     public static function findLast()
     {
-        return self::find();
-
+        //TODO Переделать через запрос к БД без findAll()
+        return self::findAll()->last();
     }
 
     public function uploadTrek($formFieldName)

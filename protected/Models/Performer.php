@@ -34,6 +34,12 @@ class Performer
         ]
     ];
 
+    public static function findLast($num = 3)
+    {
+        //TODO Переделать через запрос к БД без получения всех записей
+        return self::findAll()->slice(-$num);
+    }
+
     public function uploadImages($formFieldName)
     {
         $request = Application::instance()->request;
