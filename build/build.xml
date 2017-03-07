@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- TODO  Complete the build scenario-->
+
+<project name="musiclib" default="build" basedir=".">
+
+    <target name="vars">
+        <resolvepath propertyName="target.dir" path=""/>
+    </target>
+
+    <target name="copy">
+        <copy todir="${target.dir}">
+            <fileset dir="${project.basedir}">
+                <include name="**"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="composer">
+        <exec dir="${target.dir}" command="composer install" checkreturn="true" passthru="true" error="stdout"/>
+    </target>
+
+    <!-- TODO add necessary targets-->
+
+    <target name="build" depends="vars, copy, composer"></target>
+
+</project>
