@@ -58,11 +58,19 @@ class Music
                     return $trek->genre == $genre;
             });
         }
+        if ('performer' === $filter && null != $id) {
+            $singer = Performer::findByPK($id);
+            $collection = self::findAll();
+            return $collection->filter(
+                function ($trek) use ($singer){
+                    return $trek->performer == $singer;
+                });
+        }
     }
 
-    public static function findSorted()
+    public static function findSorted($sortBy = '')
     {
-        //TODO
+        //TODO Сортировка по именам полей и связей
     }
 
     public function uploadTrek($formFieldName)

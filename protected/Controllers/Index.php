@@ -53,5 +53,8 @@ class Index
         $this->data->genres = Genre::findAll();
     }
 
-
+    public function actionPerformers()
+    {
+        $this->data->singers = Performer::findAll();
+    }
 }
