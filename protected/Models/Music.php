@@ -45,6 +45,26 @@ class Music
         return self::findAll()->last();
     }
 
+    public static function findFiltered($filter, $id)
+    {
+        if (null == $filter || null == $id) {
+            return self::findAll();
+        }
+        if ('genre' === $filter && null != $id) {
+            $genre = Genre::findByPK($id);
+            $collection = self::findAll();
+            return $collection->filter(
+                function ($trek) use ($genre){
+                    return $trek->genre == $genre;
+            });
+        }
+    }
+
+    public static function findSorted()
+    {
+        //TODO
+    }
+
     public function uploadTrek($formFieldName)
     {
         $request = Application::instance()->request;

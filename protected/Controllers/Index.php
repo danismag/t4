@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Models\Genre;
 use App\Models\Music;
 use App\Models\Performer;
-use T4\Dbal\QueryBuilder;
 use T4\Mvc\Controller;
 
 class Index
@@ -17,9 +16,8 @@ class Index
 
     }
 
-    public function actionAllGenres()
+    public function actionGenres()
     {
-        //TODO Выводить только список из первых, например, 5 жанров
         $this->data->genres = Genre::findAll();
     }
 
@@ -42,9 +40,18 @@ class Index
 
     public function actionLastSingers()
     {
-//        var_dump(Performer::findLast());
         $this->data->singers = Performer::findLast();
     }
-    
+
+    public function actionMusic($filter = null, $id = null)
+    {
+        $this->data->music = Music::findFiltered($filter, $id);
+    }
+
+    public function actionFilteredGenres()
+    {
+        $this->data->genres = Genre::findAll();
+    }
+
 
 }

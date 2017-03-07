@@ -1,0 +1,49 @@
+{% extends 'Index.html' %}
+
+{% set title = 'Музыкальная библиотека MusicLib: все треки' %}
+
+{% block content %}
+
+    <div class="container">
+
+        <!-- Left side genre links -->
+
+        <div class="row col-md-2">
+            <t4:block path="//Index/FilteredGenres"/>
+        </div>
+
+        <!-- right side -->
+
+        <div class="row col-md-9 col-md-offset-1">
+
+            <table class="table table-hover">
+                <TR>
+                    <TH>Название</TH>
+                    <TH>Композитор</TH>
+                    <TH>Исполнитель</TH>
+                    <TH>Жанр</TH>
+                    <TH>Рейтинг</TH>
+                    <TH>Прослушать</TH>
+                </TR>
+
+                {% for trek in music %}
+
+                    <TR>
+                        <TD>{{ trek.title }}</TD>
+                        <TD>{{ trek.composer }}</TD>
+                        <TD><a href="/index/viewPerformer?id={{ trek.performer.pk }}">{{ trek.performer.name }}</a>
+                        </TD>
+                        <TD><a href="/index/viewGenre?id={{ trek.genre.pk }}">{{ trek.genre.title }}</a></TD>
+                        <TD>{{ trek.rating }}</TD>
+                        <TD>
+                            <audio src="{{ trek.path }}" controls></audio>
+                        </TD>
+                    </TR>
+
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
