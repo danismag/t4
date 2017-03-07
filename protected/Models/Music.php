@@ -38,6 +38,12 @@ class Music
         ]
     ];
 
+    public static function findLast()
+    {
+        return self::find();
+
+    }
+
     public function uploadTrek($formFieldName)
     {
         $request = Application::instance()->request;
