@@ -13,7 +13,7 @@
                 <ul class="nav nav-pills nav-stacked">
                 {% for genre in genres %}
                     <li role="presentation" class="{% if (app.request.get.filter == 'genre') and (app.request.get.id == genre.pk) %}active{% endif %}">
-                        <a href="/index/music?filter=genre&id={{ genre.pk }}" class="list-group-item">{{ genre.title }}</a>
+                        <a href="/index/music?filter=genre&id={{ genre.pk }}" class="list-group-item">{{ genre.title }} <span class="badge">{{ genre.music.count() }}</span></a>
                     </li>
                 {% endfor %}
                 </ul>

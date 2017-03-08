@@ -1,0 +1,15 @@
+{% extends 'Index.html' %}
+
+{% set title = 'Музыкальная библиотека MusicLib: {{ genre.title }} жанр' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>{{ genre.title }}</h1>
+            <p>{{ genre.description }}</p>
+            <a class="btn btn-primary btn-lg" href="/index/music?filter=genre&id={{ genre.pk }}" role="button">Послушать музыку в этом жанре</a>
+        </div>
+    </div>
+
+{% endblock %}
