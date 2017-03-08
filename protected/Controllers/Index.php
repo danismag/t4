@@ -69,6 +69,9 @@ class Index
         $this->data->singer = $singer;
     }
 
-
+    public function actionAbout()
+    {
+        
+    }
 
 }
