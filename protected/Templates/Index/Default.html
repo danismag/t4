@@ -19,13 +19,41 @@
             <!-- one top music trek -->
 
             <div class="row">
-                <t4:block path="//Index/LastTrek"/>
+                {% if trek is not empty %}
+                    <div class="jumbotron col-md-offset-1">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <h1>{{ trek.title }}</h1>
+                                <p>{{ trek.performer.name }}</p>
+                                <p><audio src="{{ trek.path }}" controls></audio></p>
+                            </div>
+                            <div class="col-md-5">
+                                <img src="{{ trek.performer.images[0].path }}" class=" img-thumbnail">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <a class="btn btn-primary btn-lg" href="/index/viewTrek?id={{ trek.pk }}" role="button">Подробнее</a>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
 
             <!-- top three Performers -->
 
             <div class="row">
-                <t4:block path="//Index/LastSingers"/>
+                {% if singers is not empty %}
+                    {% for singer in singers %}
+                        <div class="col-md-4">
+                            <div class="thumbnail">
+                                <img src="{{ singer.images[0].path }}">
+                                <div class="caption">
+                                    <h3>{{ singer.name }}</h3>
+                                    <p><a href="/index/viewPerformer?id={{ singer.pk }}" class="btn btn-primary" role="button">Об исполнителе</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>

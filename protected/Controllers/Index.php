@@ -13,12 +13,24 @@ class Index
 
     public function actionDefault()
     {
-
+        $this->data->trek = Music::findLast();
+        $this->data->singers = Performer::findLast();
     }
 
     public function actionGenres()
     {
         $this->data->genres = Genre::findAll();
+    }
+
+    public function actionMusic($filter = null, $id = null)
+    {
+        $this->data->music = Music::findAllFiltered($filter, $id);
+        $this->data->genres = Genre::findAll();
+    }
+
+    public function actionPerformers()
+    {
+        $this->data->singers = Performer::findAll();
     }
 
     public function actionViewTrek($id)
@@ -33,28 +45,30 @@ class Index
         $this->data->trek = $trek;
     }
 
-    public function actionLastTrek()
+    public function actionViewGenre($id)
     {
-        $this->data->trek = Music::findLast();
+        $genre = Genre::findByPK($id);
+
+        if (false === $genre) {
+
+            $this->app->flash->message = 'Жанр не найден';
+            $this->redirect('/');
+        }
+        $this->data->genre = $genre;
     }
 
-    public function actionLastSingers()
+    public function actionViewPerformer($id)
     {
-        $this->data->singers = Performer::findLast();
+        $singer = Music::findByPK($id);
+
+        if (false === $singer) {
+
+            $this->app->flash->message = 'Исполнитель не найден';
+            $this->redirect('/');
+        }
+        $this->data->singer = $singer;
     }
 
-    public function actionMusic($filter = null, $id = null)
-    {
-        $this->data->music = Music::findFiltered($filter, $id);
-    }
 
-    public function actionFilteredGenres()
-    {
-        $this->data->genres = Genre::findAll();
-    }
 
-    public function actionPerformers()
-    {
-        $this->data->singers = Performer::findAll();
-    }
 }

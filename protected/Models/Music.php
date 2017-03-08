@@ -4,7 +4,6 @@
 namespace App\Models;
 
 
-use T4\Dbal\QueryBuilder;
 use T4\Fs\Helpers;
 use T4\Http\Uploader;
 use T4\Mvc\Application;
@@ -41,18 +40,16 @@ class Music
 
     public static function findLast()
     {
-        //TODO Переделать через запрос к БД без findAll()
+        //TODO Переделать через запрос к БД без findAll() ?
         return self::findAll()->last();
     }
 
-    public static function findFiltered($filter, $id)
+    public static function findAllFiltered($filter, $id)
     {
-        if (null == $filter || null == $id) {
-            return self::findAll();
-        }
+        $collection = self::findAll();
+
         if ('genre' === $filter && null != $id) {
             $genre = Genre::findByPK($id);
-            $collection = self::findAll();
             return $collection->filter(
                 function ($trek) use ($genre){
                     return $trek->genre == $genre;
@@ -60,12 +57,12 @@ class Music
         }
         if ('performer' === $filter && null != $id) {
             $singer = Performer::findByPK($id);
-            $collection = self::findAll();
             return $collection->filter(
                 function ($trek) use ($singer){
                     return $trek->performer == $singer;
                 });
         }
+        return $collection;
     }
 
     public static function findSorted($sortBy = '')
