@@ -5,6 +5,9 @@ namespace App\Controllers;
 
 
 use App\Components\Auth\Identity;
+use App\Models\Genre;
+use App\Models\Music;
+use App\Models\Performer;
 use T4\Core\MultiException;
 use T4\Mvc\Controller;
 
@@ -13,7 +16,9 @@ class Admin
 {
     public function actionDefault()
     {
-
+        $this->data->genres = Genre::findAll();
+        $this->data->singers = Performer::findAll();
+        $this->data->treks = Music::findAll();
     }
 
     public function actionLogin($login = null)

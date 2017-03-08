@@ -5,32 +5,42 @@
 {% block content %}
 
     <div class="container">
-        <div class="row col-md-2">
-            first container
-        </div>
-        <div class="row col-md-10">
-            <div class="row">
-                <div class="jumbotron col-md-offset-1">
-                    <h1>Hello, world!</h1>
-                    <p>...</p>
-                    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+        <div class="row col-md-4">
+            <div class="container-fluid">
+                <h4 class="list-group-item-heading text-center">Жанры</h4>
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-success" href="/admin/genre/new">Добавить</a>
+                    <a class="list-group-item list-group-item-info" href="/admin/genre/editAll"><span class="badge">{{ genres.count() }} жанров</span>Посмотреть все</a>
+                    {% for genre in genres %}
+                        <a class="list-group-item" href="/admin/genre/edit?id={{ genre.pk }}"><span class="badge">{{ genre.music.count() }}</span>{{ genre.title }}</a>
+                    {% endfor %}
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="thumbnail">
-                        <img src="..." alt="...">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>...</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                        </div>
-                    </div>
+        </div>
+        <div class="row col-md-4">
+            <div class="container-fluid">
+                <h4 class="list-group-item-heading text-center">Исполнители</h4>
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-success" href="/admin/performer/new">Добавить</a>
+                    <a class="list-group-item list-group-item-info" href="/admin/performer/editAll"><span class="badge">{{ singers.count() }} исполнителей</span>Посмотреть все</a>
+                    {% for singer in singers %}
+                        <a class="list-group-item" href="/admin/performer/edit?id={{ singer.pk }}"><span class="badge">{{ singer.music.count() }}</span>{{ singer.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="row col-md-4">
+            <div class="container-fluid">
+                <h4 class="list-group-item-heading text-center">Треки</h4>
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-success" href="/admin/music/new">Добавить</a>
+                    <a class="list-group-item list-group-item-info" href="/admin/music/editAll"><span class="badge">{{ treks.count() }} треков</span>Посмотреть все</a>
+                    {% for trek in treks %}
+                        <a class="list-group-item" href="/admin/music/edit?id={{ trek.pk }}">{{ trek.title }}</a>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
-
-
 
 {% endblock %}
