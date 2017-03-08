@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- TODO  Complete the build scenario-->
+<!-- //TODO Заготовка: нуждается в доработке -->
 
 <project name="musiclib" default="build" basedir=".">
 
     <target name="vars">
+        <resolvepath propertyName="project.dir" path="${project.basedir}"/>
+        <echo msg="Текущая папка: ${project.dir}" />
         <resolvepath propertyName="target.dir" path=""/>
     </target>
 
@@ -20,8 +22,7 @@
         <exec dir="${target.dir}" command="composer install" checkreturn="true" passthru="true" error="stdout"/>
     </target>
 
-    <!-- TODO add necessary targets-->
 
-    <target name="build" depends="vars, copy, composer"></target>
+    <target name="build" depends="vars"></target>
 
 </project>
