@@ -59,7 +59,7 @@ class Index
 
     public function actionViewPerformer($id)
     {
-        $singer = Music::findByPK($id);
+        $singer = Performer::findByPK($id);
 
         if (false === $singer) {
 

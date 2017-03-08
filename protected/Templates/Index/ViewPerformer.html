@@ -1,0 +1,47 @@
+{% extends 'Index.html' %}
+
+{% set title = 'Музыкальная библиотека MusicLib: просмотр исполнителя' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>{{ singer.name }}</h1>
+            <p>{{ singer.bio }}</p>
+
+        </div>
+
+        <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="collapseListGroupHeading1">
+                    <h4 class="panel-title">
+                        <a href=#collapseListGroup1 class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseListGroup1">Слушать музыку</a>
+                    </h4>
+                </div>
+                <div class="collapse panel-collapse" role="tabpanel" id="collapseListGroup1"
+                     aria-labelledby="collapseListGroupHeading1">
+                    <ul class="list-group">
+                        {% if singer.music is not empty %}
+                            {% for trek in singer.music %}
+                                <li class="list-group-item">
+                                    <h4>{{ trek.title }}</h4>
+                                    <audio src="{{ trek.path }}" controls></audio>
+                                </li>
+                            {% endfor %}
+                        {% else %}
+                            <li class="list-group-item">Нет загруженных треков</li>
+                        {% endif %}
+                    </ul>
+                    <div class="panel-footer">
+                        <a class="list-group-item list-group-item-info" href="/index/music?filter=performer&id={{ singer.pk }}" role="button">Вся музыка этого исполнителя</a>
+                    </div>
+                </div>
+            </div>
+
+    {% for image in singer.images %}
+        <div class="col-sm-6">
+            <img src="{{ image.path }}" class="img-thumbnail">
+        </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}

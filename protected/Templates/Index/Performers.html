@@ -29,7 +29,10 @@
                         {% endfor %}
                     </TD>
                     <TD>
-                        <a class="btn btn-primary btn-lg" href="/index/music?filter=performer&id={{ singer.pk }}">Послушать музыку</a>
+                        <div class="list-group">
+                            <a class="list-group-item" href="/index/viewPerformer?id={{ singer.pk }}">Подробнее</a>
+                            <a class="list-group-item list-group-item-info" href="/index/music?filter=performer&id={{ singer.pk }}">Послушать музыку</a>
+                        </div>
                     </TD>
                 </TR>
 
