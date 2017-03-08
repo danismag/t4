@@ -1,0 +1,69 @@
+{% extends 'Index.html' %}
+
+{% set title = 'Музыкальная библиотека MusicLib: просмотр музыкального трека' %}
+
+{% block content %}
+
+    <div class="container">
+
+        <!-- Информация о музыкальном треке -->
+
+        <div class="jumbotron">
+            <h1>{{ trek.title }}</h1>
+            <p>{{ trek.composer }}</p>
+            <audio src="{{ trek.path }}" controls></audio>
+        </div>
+
+        <!-- Информация об исполнителе -->
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="collapseListGroupHeading1">
+                <h4 class="panel-title">
+                    <a href=#collapseListGroup1 class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseListGroup1">{{ trek.performer.name }}</a>
+                </h4>
+            </div>
+            <div class="collapse panel-collapse" role="tabpanel" id="collapseListGroup1"
+                 aria-labelledby="collapseListGroupHeading1">
+                <ul class="list-group">
+                    {% if trek.performer is not empty %}
+                        <li class="list-group-item"><a class="list-group-item" href="/index/viewPerformer?id={{ trek.performer.pk }}" role="button">{{ trek.performer.bio }}</a></li>
+                        {% for image in trek.performer.images %}
+                            <li class="list-group-item">
+                                <img src="{{ image.path }}" class="img-thumbnail">
+                            </li>
+                        {% endfor %}
+                    {% else %}
+                        <li class="list-group-item">Исполнитель не указан</li>
+                    {% endif %}
+                </ul>
+                <div class="panel-footer">
+                    <a class="list-group-item list-group-item-info" href="/index/music?filter=performer&id={{ trek.performer.pk }}" role="button">Вся музыка этого исполнителя</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Информация о музыкальном жанре -->
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="collapseListGroupHeading2">
+                <h4 class="panel-title">
+                    <a href=#collapseListGroup2 class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseListGroup1">{{ trek.genre.title }}</a>
+                </h4>
+            </div>
+            <div class="collapse panel-collapse" role="tabpanel" id="collapseListGroup2"
+                 aria-labelledby="collapseListGroupHeading2">
+                <ul class="list-group">
+                    {% if trek.genre is not empty %}
+                        <li class="list-group-item"><a class="list-group-item" href="/index/viewGenre?id={{ trek.genre.pk }}" role="button">{{ trek.genre.description }}</a></li>
+                    {% else %}
+                        <li class="list-group-item">Жанр не указан</li>
+                    {% endif %}
+                </ul>
+                <div class="panel-footer">
+                    <a class="list-group-item list-group-item-info" href="/index/music?filter=genre&id={{ trek.genre.pk }}" role="button">Вся музыка этого жанра</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

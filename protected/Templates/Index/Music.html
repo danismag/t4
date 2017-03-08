@@ -22,35 +22,40 @@
 
         <!-- right side -->
 
-        <div class="row col-md-9 col-md-offset-1">
+        <div class="row col-md-10">
+            <div class="container-fluid">
 
-            <table class="table table-hover">
-                <TR>
-                    <TH>Название</TH>
-                    <TH>Композитор</TH>
-                    <TH>Исполнитель</TH>
-                    <TH>Жанр</TH>
-                    <TH>Рейтинг</TH>
-                    <TH>Прослушать</TH>
-                </TR>
-
-                {% for trek in music %}
-
+                <table class="table table-hover">
                     <TR>
-                        <TD>{{ trek.title }}</TD>
-                        <TD>{{ trek.composer }}</TD>
-                        <TD><a href="/index/viewPerformer?id={{ trek.performer.pk }}">{{ trek.performer.name }}</a>
-                        </TD>
-                        <TD><a href="/index/viewGenre?id={{ trek.genre.pk }}">{{ trek.genre.title }}</a></TD>
-                        <TD>{{ trek.rating }}</TD>
-                        <TD>
-                            <audio src="{{ trek.path }}" controls></audio>
-                        </TD>
+                        <TH>Название</TH>
+                        <TH>Композитор</TH>
+                        <TH>Исполнитель</TH>
+                        <TH>Жанр</TH>
+                        <TH>Рейтинг</TH>
+                        <TH>Прослушать</TH>
                     </TR>
 
-                {% endfor %}
+                    {% for trek in music %}
 
-            </table>
+                        <TR>
+                            <TD><a class="list-group-item" href="/index/viewTrek?id={{ trek.pk }}">{{ trek.title }}</a>
+                            </TD>
+                            <TD>{{ trek.composer }}</TD>
+                            <TD><a class="list-group-item list-group-item-info"
+                                   href="/index/viewPerformer?id={{ trek.performer.pk }}">{{ trek.performer.name }}</a>
+                            </TD>
+                            <TD><a class="list-group-item list-group-item-success"
+                                   href="/index/viewGenre?id={{ trek.genre.pk }}">{{ trek.genre.title }}</a></TD>
+                            <TD>{{ trek.rating }}</TD>
+                            <TD>
+                                <audio src="{{ trek.path }}" controls></audio>
+                            </TD>
+                        </TR>
+
+                    {% endfor %}
+
+                </table>
+            </div>
         </div>
     </div>
 
