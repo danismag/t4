@@ -2,7 +2,7 @@
 
 <project name="musiclib" default="build" basedir=".">
 
-    <target name="build" depends="vars, copy"></target>
+    <target name="build" depends="vars, copy, composer, configs, migrate, symlinks"></target>
 
     <!-- ============================================  -->
     <!-- Target: vars                                  -->
@@ -48,10 +48,31 @@
 
     <target name="composer">
         <echo msg="Install composer dependencies..." />
-        <exec command="composer install" dir="${current.dir}" checkreturn="true" passthru="true" />
+        <exec command="composer install" dir="${current.dir}" checkreturn="true" passthru="true" error="stdout"/>
     </target>
 
+    <!-- ============================================  -->
+    <!-- Target: configs                               -->
+    <!-- ============================================  -->
+    <target name="configs">
+        <copy file="${home.dir}/config.php" tofile="${current.dir}/protected/config.php" overwrite="true" />
+    </target>
 
+    <!-- ============================================  -->
+    <!-- Target: migrate                               -->
+    <!-- ============================================  -->
+    <target name="migrate">
+        <echo msg="Migrations import..." />
+        <exec command="php protected/t4.php /migrate/import" dir="${current.dir}" checkreturn="true" passthru="true" />
+        <echo msg="Migrations up..." />
+        <exec command="php protected/t4.php /migrate/up" dir="${current.dir}" checkreturn="true" passthru="true" />
+    </target>
 
+    <!-- ============================================  -->
+    <!-- Target: symlinks                              -->
+    <!-- ============================================  -->
+    <target name="symlinks">
+        <symlink target="${current.dir}/public" link="${home.dir}/current" overwrite="true" />
+    </target>
 
 </project>
