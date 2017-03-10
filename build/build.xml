@@ -28,7 +28,7 @@
     <!-- ============================================  -->
 
     <target name="copy">
-        <mkdir dir="${current.dir}" mode="0775"/>
+        <mkdir dir="${current.dir}"/>
         <echo msg="Mkdir ${current.dir}" />
         <copy todir="${current.dir}">
             <fileset dir="${workspace.dir}" defaultexcludes="true">
@@ -42,17 +42,14 @@
         <echo msg="Mkdir ${current.dir}/protected/Cache" />
     </target>
 
-    <!--<target name="copy">
-        <copy todir="${target.dir}">
-            <fileset dir="${project.basedir}">
-                <include name="**"/>
-            </fileset>
-        </copy>
-    </target>
+    <!-- ============================================  -->
+    <!-- Target: composer                              -->
+    <!-- ============================================  -->
 
     <target name="composer">
-        <exec dir="${target.dir}" command="composer install" checkreturn="true" passthru="true" error="stdout"/>
-    </target> -->
+        <echo msg="Install composer dependencies..." />
+        <exec command="composer install" dir="${current.dir}" checkreturn="true" passthru="true" />
+    </target>
 
 
 
