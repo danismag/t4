@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- //TODO Заготовка: нуждается в доработке -->
-
 <project name="musiclib" default="build" basedir=".">
+
+    <target name="build" depends="vars"></target>
+
+    <!-- ============================================  -->
+    <!-- Target: vars                                  -->
+    <!-- ============================================  -->
 
     <target name="vars">
         <resolvepath propertyName="project.dir" path="${project.basedir}"/>
         <echo msg="Текущая папка: ${project.dir}" />
-        <resolvepath propertyName="target.dir" path=""/>
+
+        <php returnProperty="build.time" function="date">
+            <param value="Y-m-d-H-i-s" />
+        </php>
+
+        <resolvepath propertyName="home.dir" file="/home/danis/www/muslib/master" />
+        <echo msg="Папка сайта: ${home.dir}" />
+
+        <resolvepath propertyName="current.dir" file="${home.dir}/deploy/${build.time}" />
+        <echo msg="Current build dir is: ${current.dir}" />
     </target>
 
-    <target name="copy">
+    <!--<target name="copy">
         <copy todir="${target.dir}">
             <fileset dir="${project.basedir}">
                 <include name="**"/>
@@ -20,9 +33,9 @@
 
     <target name="composer">
         <exec dir="${target.dir}" command="composer install" checkreturn="true" passthru="true" error="stdout"/>
-    </target>
+    </target> -->
 
 
-    <target name="build" depends="vars"></target>
+
 
 </project>
