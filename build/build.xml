@@ -2,7 +2,7 @@
 
 <project name="musiclib" default="build" basedir=".">
 
-    <target name="build" depends="vars"></target>
+    <target name="build" depends="vars, copy"></target>
 
     <!-- ============================================  -->
     <!-- Target: vars                                  -->
@@ -21,6 +21,25 @@
 
         <resolvepath propertyName="current.dir" file="${home.dir}/deploy/${build.time}" />
         <echo msg="Current build dir is: ${current.dir}" />
+    </target>
+
+    <!-- ============================================  -->
+    <!-- Target: copy                                  -->
+    <!-- ============================================  -->
+
+    <target name="copy">
+        <mkdir dir="${current.dir}" mode="0775"/>
+        <echo msg="Mkdir ${current.dir}" />
+        <copy todir="${current.dir}">
+            <fileset dir="${workspace.dir}" defaultexcludes="true">
+                <include name="**" />
+            </fileset>
+        </copy>
+        <echo msg="Copy files from ${workspace.dir} to directory ${current.dir}" />
+        <chmod file="${current.dir}/public" mode="0775" />
+        <chmod file="${current.dir}/protected" mode="0775" />
+        <mkdir dir="${current.dir}/protected/Cache" mode="0775" />
+        <echo msg="Mkdir ${current.dir}/protected/Cache" />
     </target>
 
     <!--<target name="copy">
