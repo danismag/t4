@@ -9,15 +9,15 @@
     <!-- ============================================  -->
 
     <target name="vars">
-        <resolvepath propertyName="project.dir" path="${project.basedir}"/>
-        <echo msg="Текущая папка: ${project.dir}" />
+        <resolvepath propertyName="workspace.dir" path="${project.basedir}"/>
+        <echo msg="Workspace directory: ${workspace.dir}" />
 
         <php returnProperty="build.time" function="date">
             <param value="Y-m-d-H-i-s" />
         </php>
 
         <resolvepath propertyName="home.dir" file="/home/danis/www/muslib/master" />
-        <echo msg="Папка сайта: ${home.dir}" />
+        <echo msg="Project home directory: ${home.dir}" />
 
         <resolvepath propertyName="current.dir" file="${home.dir}/deploy/${build.time}" />
         <echo msg="Current build dir is: ${current.dir}" />
