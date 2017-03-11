@@ -74,6 +74,7 @@
 
     <target name="symlinks">
         <symlink target="${home.dir}/data" link="${current.dir}/public/data" overwrite="true" />
+        <symlink target="${home.dir}/Assets" link="${current.dir}/public/Assets" overwrite="true" />
     </target>
 
     <!-- ============================================  -->
