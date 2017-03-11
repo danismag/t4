@@ -61,6 +61,8 @@ class MusicEdit
 
             $this->data->errors = $e;
             $this->data->trek = $trek;
+            $this->data->genres = Genre::findAll();
+            $this->data->performers = Performer::findAll();
         }
 
     }
