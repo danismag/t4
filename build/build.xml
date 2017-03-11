@@ -48,7 +48,7 @@
 
     <target name="composer">
         <echo msg="Install composer dependencies..." />
-        <exec command="composer install" dir="${current.dir}" checkreturn="true" passthru="true" error="stdout"/>
+        <exec command="composer install" dir="${current.dir}" checkreturn="true" passthru="true"/>
     </target>
 
     <!-- ============================================  -->
@@ -65,7 +65,7 @@
 
     <target name="migrate">
         <echo msg="Migrations up..." />
-        <exec command="php protected/t4.php /migrate/up" dir="${current.dir}" checkreturn="true" passthru="true" error="stdout"/>
+        <exec command="php protected/t4.php /migrate/up" dir="${current.dir}" checkreturn="true" passthru="true"/>
     </target>
 
     <!-- ============================================  -->
