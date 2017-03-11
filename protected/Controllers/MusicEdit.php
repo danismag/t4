@@ -47,6 +47,7 @@ class MusicEdit
             } else {
                 $obj = \App\Models\Music::findByPK($trek['pk']);
             }
+
             $obj->genre = Genre::findByPK($genreId);
             $obj->performer = Performer::findByPK($performerId);
 
@@ -55,7 +56,7 @@ class MusicEdit
                 ->save();
 
             $this->app->flash->message = 'Композиция успешно сохранена';
-            $this->redirect($_SERVER['HTTP_REFERER']);
+            $this->redirect('/admin');
 
         } catch (MultiException $e) {
 
